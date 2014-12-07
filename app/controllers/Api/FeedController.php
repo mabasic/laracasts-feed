@@ -45,7 +45,7 @@ class FeedController extends ApiController {
                 'summary' => $lesson->summary,
                 'link'    => $lesson->link,
                 'type'    => $this->detectLessonOrSeries($lesson->link)
-			];
+            ];
         }
 
         return $output;
@@ -53,7 +53,7 @@ class FeedController extends ApiController {
 
     private function detectLessonOrSeries($string)
     {
-        if(strpos($string, 'episodes') !== false) return 'lesson';
+        if (strpos($string, 'episodes') !== false) return 'lesson';
 
         return 'serie';
     }
@@ -81,17 +81,23 @@ class FeedController extends ApiController {
 
         foreach ($lessons as $lesson)
         {
-            if($this->detectLessonOrSeries($lesson->link) == 'serie') continue;
+            if ($this->detectLessonOrSeries($lesson->link) == 'serie') continue;
 
             $output[] = [
                 'title'   => $lesson->title,
                 'summary' => $lesson->summary,
                 'link'    => $lesson->link,
-                'type'    => $this->detectLessonOrSeries($lesson->link)
+                'type'    => $this->detectLessonOrSeries($lesson->link),
+                'date'    => $this->getLessonDate($lesson->updated)
             ];
         }
 
         return $output;
+    }
+
+    private function getLessonDate($date)
+    {
+        return date('d.m.Y', strtotime($date));
     }
 
 }
