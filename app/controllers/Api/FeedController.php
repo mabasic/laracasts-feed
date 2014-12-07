@@ -15,15 +15,17 @@ class FeedController extends ApiController {
      */
     public function index()
     {
-        if (Cache::has('response')) return Cache::get('response');
+        //if (Cache::has('response')) return Cache::get('response');
 
         $lessons = Laracasts::lessons();
 
-        $output = $this->generateJSONForLessons($lessons);
+        $output = $this->generateJSONForFeed($lessons);
 
         $header = $this->setCORSHeaders();
 
-        Cache::put('response', $response = Response::json($output, 200, $header), $this::CACHE_DURATION);
+        $response = Response::json($output, 200, $header);
+
+        //Cache::put('response', $response, $this::CACHE_DURATION);
 
         return $response;
     }
@@ -32,7 +34,7 @@ class FeedController extends ApiController {
      * @param $lessons
      * @return array
      */
-    private function generateJSONForLessons($lessons)
+    private function generateJSONForFeed($lessons)
     {
         $output = [];
 
@@ -54,6 +56,42 @@ class FeedController extends ApiController {
         if(strpos($string, 'episodes') !== false) return 'lesson';
 
         return 'serie';
+    }
+
+    public function getLessonsFromFeed()
+    {
+        //if (Cache::has('response')) return Cache::get('response');
+
+        $lessons = Laracasts::lessons();
+
+        $output = $this->generateJSONOnlyForLessons($lessons);
+
+        $header = $this->setCORSHeaders();
+
+        $response = Response::json($output, 200, $header);
+
+        //Cache::put('response', $response, $this::CACHE_DURATION);
+
+        return $response;
+    }
+
+    private function generateJSONOnlyForLessons($lessons)
+    {
+        $output = [];
+
+        foreach ($lessons as $lesson)
+        {
+            if($this->detectLessonOrSeries($lesson->link) == 'serie') continue;
+
+            $output[] = [
+                'title'   => $lesson->title,
+                'summary' => $lesson->summary,
+                'link'    => $lesson->link,
+                'type'    => $this->detectLessonOrSeries($lesson->link)
+            ];
+        }
+
+        return $output;
     }
 
 }
