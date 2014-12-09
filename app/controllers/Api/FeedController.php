@@ -77,7 +77,22 @@ class FeedController extends ApiController {
 
     private function generateJSONOnlyForLessons($lessons)
     {
-        $output = [];
+        $output = [
+/*            [
+                'title'   => "test",
+                'summary' => "test x2",
+                'link'    => "link",
+                'type'    => "lesson",
+                'date'    => "01.01.2014"
+            ],
+            [
+                'title'   => "test 2",
+                'summary' => "test x2",
+                'link'    => "link",
+                'type'    => "lesson",
+                'date'    => "09.12.2014"
+            ]*/
+        ];
 
         foreach ($lessons as $lesson)
         {
