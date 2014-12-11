@@ -121,7 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Malfaitrobin\Laracasts\LaracastsServiceProvider',
+		'Mabasic\Laracasts\LaracastsServiceProvider',
 
 	),
 
@@ -189,7 +189,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-		'Laracasts'       => 'Malfaitrobin\Laracasts\Facades\Laracasts',
+		'Laracasts'       => 'Mabasic\Laracasts\Facades\Laracasts',
 
 	),
 

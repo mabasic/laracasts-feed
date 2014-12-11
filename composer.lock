@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6d482a1133eec55a1346ffe2938f26ea",
+    "hash": "ebd52bbeae3e626075deb4f0fb333875",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -144,58 +144,6 @@
                 "zf2"
             ],
             "time": "2014-10-26 09:05:09"
-        },
-        {
-            "name": "illuminate/support",
-            "version": "v4.1.30",
-            "target-dir": "Illuminate/Support",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/support.git",
-                "reference": "205a132f7d5e5222d23e17d49ad922bf349d240e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/205a132f7d5e5222d23e17d49ad922bf349d240e",
-                "reference": "205a132f7d5e5222d23e17d49ad922bf349d240e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "jeremeamia/superclosure": "1.0.*",
-                "mockery/mockery": "0.9.*",
-                "patchwork/utf8": "1.1.*",
-                "phpunit/phpunit": "4.0.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Illuminate\\Support": ""
-                },
-                "files": [
-                    "Illuminate/Support/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com",
-                    "homepage": "https://github.com/taylorotwell",
-                    "role": "Creator of Laravel"
-                }
-            ],
-            "time": "2014-05-30 16:22:08"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -403,37 +351,46 @@
             "time": "2014-10-04 18:48:27"
         },
         {
-            "name": "malfaitrobin/laracasts",
-            "version": "dev-master",
+            "name": "mabasic/laracasts-feed-package",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinMalfait/l4-laracasts-feed.git",
-                "reference": "fb98badfde8d797688671771c6ae2fbb8e788b34"
+                "url": "https://github.com/mabasic/laracasts-feed-package.git",
+                "reference": "aeed837b9338bf4eed601ce849bc8631ee1b7fa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinMalfait/l4-laracasts-feed/zipball/fb98badfde8d797688671771c6ae2fbb8e788b34",
-                "reference": "fb98badfde8d797688671771c6ae2fbb8e788b34",
+                "url": "https://api.github.com/repos/mabasic/laracasts-feed-package/zipball/aeed837b9338bf4eed601ce849bc8631ee1b7fa6",
+                "reference": "aeed837b9338bf4eed601ce849bc8631ee1b7fa6",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "4.1.x",
-                "php": ">=5.3.0"
+                "illuminate/support": "4.2.x",
+                "php": ">=5.4.0"
             },
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Malfaitrobin\\Laracasts": "src/"
+                    "Mabasic\\Laracasts": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
-                    "name": "Robin Malfait",
-                    "email": "malfait.robin@gmail.com"
+                    "name": "Mario Basic",
+                    "email": "mario.basic@outlook.com"
                 }
             ],
-            "time": "2013-10-28 00:07:53"
+            "description": "This is a simple laracasts feed wrapper; Get a list of the lessons from the feed and get some meta data.",
+            "keywords": [
+                "feed",
+                "laracasts",
+                "laravel"
+            ],
+            "time": "2014-12-11 10:59:38"
         },
         {
             "name": "monolog/monolog",
@@ -1979,9 +1936,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "malfaitrobin/laracasts": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": [],
     "platform-dev": []

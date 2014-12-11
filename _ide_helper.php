@@ -1465,7 +1465,7 @@ namespace {
          *
          * @param string $driver
          * @param \Closure $callback
-         * @return \Illuminate\Support\Manager|static 
+         * @return $this 
          * @static 
          */
         public static function extend($driver, $callback){
@@ -2031,7 +2031,7 @@ namespace {
          *
          * @param string $driver
          * @param \Closure $callback
-         * @return \Illuminate\Support\Manager|static 
+         * @return $this 
          * @static 
          */
         public static function extend($driver, $callback){
@@ -10805,7 +10805,7 @@ namespace {
          *
          * @param string $driver
          * @param \Closure $callback
-         * @return \Illuminate\Support\Manager|static 
+         * @return $this 
          * @static 
          */
         public static function extend($driver, $callback){
@@ -12228,7 +12228,7 @@ namespace {
     }
 
 
-    class Laracasts extends \Malfaitrobin\Laracasts\Facades\Laracasts{
+    class Laracasts extends \Mabasic\Laracasts\Facades\Laracasts{
         
         /**
          * Get the lessons aka entries
@@ -12237,7 +12237,7 @@ namespace {
          * @static 
          */
         public static function lessons(){
-            return \Malfaitrobin\Laracasts\Laracasts::lessons();
+            return \Mabasic\Laracasts\Laracasts::lessons();
         }
         
         /**
@@ -12247,7 +12247,7 @@ namespace {
          * @static 
          */
         public static function meta(){
-            return \Malfaitrobin\Laracasts\Laracasts::meta();
+            return \Mabasic\Laracasts\Laracasts::meta();
         }
         
         /**
@@ -12257,7 +12257,7 @@ namespace {
          * @static 
          */
         public static function setCacheTime($time){
-            return \Malfaitrobin\Laracasts\Laracasts::setCacheTime($time);
+            return \Mabasic\Laracasts\Laracasts::setCacheTime($time);
         }
         
     }
