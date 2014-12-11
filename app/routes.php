@@ -3,5 +3,6 @@
 Route::group(['prefix' => 'api/v1', 'namespace' => 'Api'], function()
 {
     Route::get('feed/lessons', 'FeedController@getLessonsFromFeed');
-    Route::resource('feed', 'FeedController', ['only' => ['index']]);
+
+    Route::get('feed', 'FeedController@getFeed');
 });

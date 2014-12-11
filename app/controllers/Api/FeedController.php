@@ -3,31 +3,44 @@
 use Cache;
 use Laracasts;
 use Response;
+use Illuminate\Http\Response as IlluminateResponse;
 
 class FeedController extends ApiController {
 
-    CONST CACHE_DURATION = 60;//minutes
+    /**
+     * How long to cache the response.
+     */
+    CONST CACHE_DURATION = 30; //minutes
 
     /**
-     * Display a listing of the resource.
+     * Because we fetch the feed,we don't want
+     * to hit Laracasts server every time.
+     * The standard cache time is 1 hour!
+     */
+    CONST LARACASTS_CACHE_DURATION = 15; //minutes
+
+    public function __construct()
+    {
+        Laracasts::setCacheTime($this::LARACASTS_CACHE_DURATION);
+    }
+
+    /**
+     * Returns cached feed.
      *
      * @return Response
      */
-    public function index()
+    public function getFeed()
     {
-        //if (Cache::has('response')) return Cache::get('response');
+        if ( ! Cache::has('feed'))
+        {
+            Cache::put('feed', Response::json(
+                $this->generateJSONForFeed(Laracasts::lessons()),
+                IlluminateResponse::HTTP_OK,
+                $this->setCORSHeaders()
+            ), $this::CACHE_DURATION);
+        }
 
-        $lessons = Laracasts::lessons();
-
-        $output = $this->generateJSONForFeed($lessons);
-
-        $header = $this->setCORSHeaders();
-
-        $response = Response::json($output, 200, $header);
-
-        //Cache::put('response', $response, $this::CACHE_DURATION);
-
-        return $response;
+        return Cache::get('feed');
     }
 
     /**
@@ -51,52 +64,36 @@ class FeedController extends ApiController {
         return $output;
     }
 
-    private function detectLessonOrSeries($string)
-    {
-        if (strpos($string, 'episodes') !== false) return 'lesson';
-
-        return 'serie';
-    }
-
+    /**
+     * Returns only cached lessons from feed.
+     *
+     * @return mixed
+     */
     public function getLessonsFromFeed()
     {
-        //if (Cache::has('response')) return Cache::get('response');
+        if ( ! Cache::has('lessons'))
+        {
+            Cache::put('lessons', Response::json(
+                $this->generateJSONOnlyForLessons(Laracasts::lessons()),
+                IlluminateResponse::HTTP_OK,
+                $this->setCORSHeaders()
+            ), $this::CACHE_DURATION);
+        }
 
-        $lessons = Laracasts::lessons();
-
-        $output = $this->generateJSONOnlyForLessons($lessons);
-
-        $header = $this->setCORSHeaders();
-
-        $response = Response::json($output, 200, $header);
-
-        //Cache::put('response', $response, $this::CACHE_DURATION);
-
-        return $response;
+        return Cache::get('lessons');
     }
 
+    /**
+     * @param $lessons
+     * @return array
+     */
     private function generateJSONOnlyForLessons($lessons)
     {
-        $output = [
-/*            [
-                'title'   => "test",
-                'summary' => "test x2",
-                'link'    => "link",
-                'type'    => "lesson",
-                'date'    => "01.01.2014"
-            ],
-            [
-                'title'   => "test 2",
-                'summary' => "test x2",
-                'link'    => "link",
-                'type'    => "lesson",
-                'date'    => "09.12.2014"
-            ]*/
-        ];
+        $output = [];
 
         foreach ($lessons as $lesson)
         {
-            if ($this->detectLessonOrSeries($lesson->link) == 'serie') continue;
+            if ($this->detectLessonOrSeries($lesson->link) == 'series') continue;
 
             $output[] = [
                 'title'   => $lesson->title,
@@ -110,6 +107,27 @@ class FeedController extends ApiController {
         return $output;
     }
 
+    /**
+     * Detects if the item from the feed
+     * is a lesson or a series.
+     *
+     * @param $string
+     * @return string
+     */
+    private function detectLessonOrSeries($string)
+    {
+        if (strpos($string, 'episodes') !== false) return 'lesson';
+
+        return 'series';
+    }
+
+    /**
+     * Converts timestamp from feed to date format
+     * DD.MM.YYYY ex: 23.12.2014
+     *
+     * @param $date
+     * @return bool|string
+     */
     private function getLessonDate($date)
     {
         return date('d.m.Y', strtotime($date));
