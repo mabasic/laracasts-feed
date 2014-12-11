@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ebd52bbeae3e626075deb4f0fb333875",
+    "hash": "fa55947283c06a969dec324105e17dc7",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -351,17 +351,17 @@
             "time": "2014-10-04 18:48:27"
         },
         {
-            "name": "mabasic/laracasts-feed-package",
-            "version": "1.0.0",
+            "name": "malfaitrobin/laracasts",
+            "version": "1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mabasic/laracasts-feed-package.git",
-                "reference": "aeed837b9338bf4eed601ce849bc8631ee1b7fa6"
+                "url": "https://github.com/RobinMalfait/l4-laracasts-feed.git",
+                "reference": "77e2054a7b61d178a0e97a04026bfa6992f20dcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mabasic/laracasts-feed-package/zipball/aeed837b9338bf4eed601ce849bc8631ee1b7fa6",
-                "reference": "aeed837b9338bf4eed601ce849bc8631ee1b7fa6",
+                "url": "https://api.github.com/repos/RobinMalfait/l4-laracasts-feed/zipball/77e2054a7b61d178a0e97a04026bfa6992f20dcf",
+                "reference": "77e2054a7b61d178a0e97a04026bfa6992f20dcf",
                 "shasum": ""
             },
             "require": {
@@ -371,7 +371,7 @@
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Mabasic\\Laracasts": "src/"
+                    "Malfaitrobin\\Laracasts": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -380,8 +380,8 @@
             ],
             "authors": [
                 {
-                    "name": "Mario Basic",
-                    "email": "mario.basic@outlook.com"
+                    "name": "Robin Malfait",
+                    "email": "malfait.robin@gmail.com"
                 }
             ],
             "description": "This is a simple laracasts feed wrapper; Get a list of the lessons from the feed and get some meta data.",
@@ -390,7 +390,7 @@
                 "laracasts",
                 "laravel"
             ],
-            "time": "2014-12-11 10:59:38"
+            "time": "2014-12-11 11:56:26"
         },
         {
             "name": "monolog/monolog",

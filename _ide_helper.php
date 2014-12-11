@@ -12228,7 +12228,7 @@ namespace {
     }
 
 
-    class Laracasts extends \Mabasic\Laracasts\Facades\Laracasts{
+    class Laracasts extends \Malfaitrobin\Laracasts\Facades\Laracasts{
         
         /**
          * Get the lessons aka entries
@@ -12237,7 +12237,7 @@ namespace {
          * @static 
          */
         public static function lessons(){
-            return \Mabasic\Laracasts\Laracasts::lessons();
+            return \Malfaitrobin\Laracasts\Laracasts::lessons();
         }
         
         /**
@@ -12247,7 +12247,7 @@ namespace {
          * @static 
          */
         public static function meta(){
-            return \Mabasic\Laracasts\Laracasts::meta();
+            return \Malfaitrobin\Laracasts\Laracasts::meta();
         }
         
         /**
@@ -12257,7 +12257,7 @@ namespace {
          * @static 
          */
         public static function setCacheTime($time){
-            return \Mabasic\Laracasts\Laracasts::setCacheTime($time);
+            return \Malfaitrobin\Laracasts\Laracasts::setCacheTime($time);
         }
         
     }
