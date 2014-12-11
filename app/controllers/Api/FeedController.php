@@ -1,6 +1,5 @@
 <?php namespace Api;
 
-use Cache;
 use Laracasts;
 use Response;
 use Illuminate\Http\Response as IlluminateResponse;
@@ -8,16 +7,11 @@ use Illuminate\Http\Response as IlluminateResponse;
 class FeedController extends ApiController {
 
     /**
-     * How long to cache the response.
-     */
-    CONST CACHE_DURATION = 30; //minutes
-
-    /**
      * Because we fetch the feed,we don't want
      * to hit Laracasts server every time.
      * The standard cache time is 1 hour!
      */
-    CONST LARACASTS_CACHE_DURATION = 15; //minutes
+    CONST LARACASTS_CACHE_DURATION = 30; //minutes
 
     public function __construct()
     {
@@ -31,16 +25,11 @@ class FeedController extends ApiController {
      */
     public function getFeed()
     {
-        if ( ! Cache::has('feed'))
-        {
-            Cache::put('feed', Response::json(
-                $this->generateJSONForFeed(Laracasts::lessons()),
-                IlluminateResponse::HTTP_OK,
-                $this->setCORSHeaders()
-            ), $this::CACHE_DURATION);
-        }
-
-        return Cache::get('feed');
+        return Response::json(
+            $this->generateJSONForFeed(Laracasts::lessons()),
+            IlluminateResponse::HTTP_OK,
+            $this->setCORSHeaders()
+        );
     }
 
     /**
@@ -71,16 +60,11 @@ class FeedController extends ApiController {
      */
     public function getLessonsFromFeed()
     {
-        if ( ! Cache::has('lessons'))
-        {
-            Cache::put('lessons', Response::json(
-                $this->generateJSONOnlyForLessons(Laracasts::lessons()),
-                IlluminateResponse::HTTP_OK,
-                $this->setCORSHeaders()
-            ), $this::CACHE_DURATION);
-        }
-
-        return Cache::get('lessons');
+        return Response::json(
+            $this->generateJSONOnlyForLessons(Laracasts::lessons()),
+            IlluminateResponse::HTTP_OK,
+            $this->setCORSHeaders()
+        );
     }
 
     /**
