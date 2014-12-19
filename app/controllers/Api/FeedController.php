@@ -100,7 +100,10 @@ class FeedController extends ApiController {
      */
     private function detectLessonOrSeries($string)
     {
-        if (strpos($string, 'episodes') !== false) return 'lesson';
+        if (strpos($string, 'episodes') !== false || strpos($string, 'lessons') !== false)
+        {
+            return 'lesson';
+        }
 
         return 'series';
     }
