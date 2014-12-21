@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 4, to provide autocomplete information to your IDE
- * Generated for Laravel 4.2.11 on 2014-12-11.
+ * Generated for Laravel 4.2.12 on 2014-12-21.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -366,7 +366,7 @@ namespace {
         }
         
         /**
-         * Terminate the request and send the response to the browser.
+         * Call the "finish" and "shutdown" callbacks assigned to the application.
          *
          * @param \Symfony\Component\HttpFoundation\Request $request
          * @param \Symfony\Component\HttpFoundation\Response $response
@@ -2172,7 +2172,7 @@ namespace {
         /**
          * Get the cache store implementation.
          *
-         * @return \Illuminate\Cache\FileStore 
+         * @return \Illuminate\Cache\DatabaseStore 
          * @static 
          */
         public static function getStore(){
@@ -2265,23 +2265,25 @@ namespace {
          *
          * @param string $key
          * @param mixed $value
-         * @return int 
+         * @return void 
+         * @throws \LogicException
          * @static 
          */
         public static function increment($key, $value = 1){
-            return \Illuminate\Cache\FileStore::increment($key, $value);
+            \Illuminate\Cache\DatabaseStore::increment($key, $value);
         }
         
         /**
-         * Decrement the value of an item in the cache.
+         * Increment the value of an item in the cache.
          *
          * @param string $key
          * @param mixed $value
-         * @return int 
+         * @return void 
+         * @throws \LogicException
          * @static 
          */
         public static function decrement($key, $value = 1){
-            return \Illuminate\Cache\FileStore::decrement($key, $value);
+            \Illuminate\Cache\DatabaseStore::decrement($key, $value);
         }
         
         /**
@@ -2293,7 +2295,7 @@ namespace {
          * @static 
          */
         public static function forever($key, $value){
-            \Illuminate\Cache\FileStore::forever($key, $value);
+            \Illuminate\Cache\DatabaseStore::forever($key, $value);
         }
         
         /**
@@ -2304,7 +2306,7 @@ namespace {
          * @static 
          */
         public static function forget($key){
-            \Illuminate\Cache\FileStore::forget($key);
+            \Illuminate\Cache\DatabaseStore::forget($key);
         }
         
         /**
@@ -2314,27 +2316,27 @@ namespace {
          * @static 
          */
         public static function flush(){
-            \Illuminate\Cache\FileStore::flush();
+            \Illuminate\Cache\DatabaseStore::flush();
         }
         
         /**
-         * Get the Filesystem instance.
+         * Get the underlying database connection.
          *
-         * @return \Illuminate\Filesystem\Filesystem 
+         * @return \Illuminate\Database\Connection 
          * @static 
          */
-        public static function getFilesystem(){
-            return \Illuminate\Cache\FileStore::getFilesystem();
+        public static function getConnection(){
+            return \Illuminate\Cache\DatabaseStore::getConnection();
         }
         
         /**
-         * Get the working directory of the cache.
+         * Get the encrypter instance.
          *
-         * @return string 
+         * @return \Illuminate\Encryption\Encrypter 
          * @static 
          */
-        public static function getDirectory(){
-            return \Illuminate\Cache\FileStore::getDirectory();
+        public static function getEncrypter(){
+            return \Illuminate\Cache\DatabaseStore::getEncrypter();
         }
         
     }
@@ -8414,7 +8416,7 @@ namespace {
         }
         
         /**
-         * Push a new an array of jobs onto the queue.
+         * Push an array of jobs onto the queue.
          *
          * @param array $jobs
          * @param mixed $data
