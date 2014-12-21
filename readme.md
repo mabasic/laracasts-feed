@@ -1,5 +1,7 @@
 # Laracasts Feed 
 
+[![Build Status](https://travis-ci.org/mabasic/laracasts-feed.svg)](https://travis-ci.org/mabasic/laracasts-feed)
+
 **API for fetching RSS feed from Laracasts and returning it as JSON with some extra features**
 
 This application fetches the Laracasts XML RSS feed and converts it to JSON format. 
